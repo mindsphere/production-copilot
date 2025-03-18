@@ -12,6 +12,11 @@ This repository provides some information / examples for an `early access` tutor
 
 - [Tutorial](./tutorial/)
 
+## Prerequisites
+
+This examples are only available and working for customers with an Early Access subscription in Insights Hub. These features may be modified or updated in the future.
+
+
 ## Questions
 
 If you have any questions, your sales representative, customer success manager, or our customer support team is here for you.

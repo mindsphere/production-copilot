@@ -2,7 +2,9 @@
 
 In the `early access` phase developers can test some upcoming features in an early stage / beta version using a tutorial.
 
-The mentioned postman collection or vfc sample flows are uploaded here:
+The mentioned bruno collection or vfc sample flows are uploaded here:
 
-- [Tutorial Postman Collection](./postman/Production-Copilot-Tutorial_v1.0_2025-01-31.postman_collection.json)
-- [Tutorial VFC Flow](./vfc/Production-Copilot-Tutorial.vfc-sample-flow.json)
+- [Tutorial Bruno Collection](./bruno/Production%20Copilot%20Tutorial%20v1.0%202025-03.json)<br>
+    ![Bruno collection](./bruno/bruno-collection.png)
+- [Tutorial VFC Flow](./vfc/Production-Copilot-Tutorial.vfc-sample-flow.json)<br>
+    ![Example skills](./vfc/copilot-example-skills.png)

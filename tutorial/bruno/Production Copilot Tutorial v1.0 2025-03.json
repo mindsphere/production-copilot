@@ -1,0 +1,545 @@
+{
+  "name": "Production Copilot Tutorial v1.0 2025-03",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "Get api version",
+      "seq": 2,
+      "request": {
+        "url": "{{assistant_server_url}}/version",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "folder",
+      "name": "Assistants -Agents-",
+      "root": {
+        "meta": {
+          "name": "Assistants (Copilots)"
+        }
+      },
+      "items": [
+        {
+          "type": "http",
+          "name": "Create Assistant",
+          "seq": 3,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"name\": \"Tutorial: Shopfloor Snapshot-xxx\",\n  \"description\": \"This agent provides a snapshot of your plant.\",\n  \"instructions\": \"You are a helpful plant assistant.\\nWhenever a user asks, execute these steps in sequence. Always summarize your findings. Begin your answer with 'Here is today's summary for your plant:'\\n\\n*(STEP) Current status*: Get the plant status and summarize it per machine for the user. Provide the output for the user before you proceed to the next step.\\n\\n*(STEP) Recent events and cases*: Get recent events, get recent cases. Then list a summary for the user with the 5 (five) most interesting events and cases. Ignore timestamps and avoid duplicate entries. Never skip this step! Provide the output for the user before you proceed to the next step.\\n\\n*(STEP) Recommendations*. Check if any case data matches to recent events and the machine states. If possible provide a recommendation to solve the current problem. Mention ONLY cases that are related to current machines in ERROR state. If there are no recommendations skip this section completely'.\\n\\n*(STEP) Reference Data*. Only if you have given a recommendation: summarize historical events and cases that were used to create it. If there is no recommedation skip this section completely.\\n\\n*(STEP) Energy use:* Check the energy cost. If it is above 35 €/MWh recommend to reduce the oven pre-heating temperature if the schedule permits.\\n\\nAlways summarize your findings.\",\n  \"toolIds\": [\n    \"your-skill-id-1\",\n    \"your-skill-id-2\",\n    \"your-skill-id-3\",\n    \"your-skill-id-4\",\n    \"your-skill-id-5\",\n    \"your-skill-id-6\"\n  ]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Delete Assistant By Id - attention -",
+          "seq": 5,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/:id",
+            "method": "DELETE",
+            "headers": [],
+            "params": [
+              {
+                "name": "id",
+                "value": "<add the assistant-id with care>",
+                "type": "path",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "json": "",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Get Assistant By Id",
+          "seq": 2,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/:id",
+            "method": "GET",
+            "headers": [],
+            "params": [
+              {
+                "name": "id",
+                "value": "<Enter your agent id here - e.g. copy from Copilot Studio>",
+                "type": "path",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "json": "",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Get Assistants",
+          "seq": 1,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant",
+            "method": "GET",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Update Assistant By Id -see Scripts section-",
+          "seq": 4,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/:id",
+            "method": "PUT",
+            "headers": [],
+            "params": [
+              {
+                "name": "id",
+                "value": "<Enter your agent id here - e.g. copy from Copilot Studio>",
+                "type": "path",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"name\": \"Tutorial: Shopfloor Snapshot-xxx\",\n  \"instructions\": {{instructions}},\n  \"owner\": \"admin\",\n  \"toolIds\": [\n    \"your-skill-id-1\",\n    \"your-skill-id-2\",\n    \"your-skill-id-3\",\n    \"your-skill-id-4\",\n    \"your-skill-id-5\",\n    \"your-skill-id-6\"\n  ]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {
+              "req": "const instructions =  \r\n\"You are an assistant tasked with helping the user to understand the situation on the shopfloor, and help where possible.\\n\\n\" +\r\n\"**General instructions:**\\n\" +\r\n\"- ALWAYS summarize events and cases, avoid duplicate entries\" +\r\n\"- When you use the function 'getEventData' summarize based on the description. Ignore the timestamps. The user should not see the same description several times. Only if the user asks for a list of events, provide all data without summarizing.\\n\" +\r\n\"- For each question, ALWAYS trigger new tool calls, do NOT use cached data.\" +\r\n\"**Specific instructions:**\\n\" +\r\n\"- When the user asks questions about the status of the plant or current problems, or recommendations follow these instructions:\\n\" +\r\n\"  1. Get the current status of the plant, get event data, get case data\\n\" +\r\n\"  2. Provide a response to the user in the following format:\\n\" +\r\n\"    - *Current status*. Here, list the plant status.\\n\" +\r\n\"    - *Recent events*. Here, list a summary of recent events.\\n\" +\r\n\"    - *Recommendations*. Here, check if any case data matches to recent events the the machine states. Then, if possible, provide a recommendation to solve the current problem. Make sure to mention ONLY cases that are related to current machines in ERROR state. If you are not sure, say 'There are no recommendations for the current situation'.\\n\" +\r\n\"    - *Reference Data*. If there was a recommendation summarize historical events and cases that were used to create it. If there is no recommedation, or if there are no related cases or events leave away this section.\" \r\n\r\nbru.setVar(\"instructions\", JSON.stringify(instructions));"
+            },
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "Tools -Skills-",
+      "root": {
+        "meta": {
+          "name": "Tools (Skills)"
+        }
+      },
+      "items": [
+        {
+          "type": "http",
+          "name": "Create New Tool- CreateCase_proposal",
+          "seq": 8,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/tools",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n    \"name\": \"createCaseProposal\",\n    \"callMethod\": \"post\",\n    \"description\": \"Helps the user to create a new case with information about the current problem, so that the maintenance team can act on the issues. Suggests a title and short summary description based on the current situation. Then asks the user for confirmation. After user confirmation, use the createNewCase function to save the data in the system.\",\n    \"parameters\":[], \n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-create-a-new-case-proposal>\",\n    \"type\": \"external\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Create New Tool- CreateNewCase",
+          "seq": 7,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/tools",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n    \"name\": \"tutorialCreateNewCase\",\n    \"callMethod\": \"post\",\n    \"description\": \"Create a new case based on the provided title and description\",\n    \"parameters\":[\n        {\n            \"name\": \"title\",\n            \"type\": \"string\",\n            \"description\": \"The title of the case as string. \",\n            \"parameterUsage\": \"body\"\n        }, \n        {\n            \"name\": \"description\",\n            \"type\": \"string\",\n            \"description\": \"The description of the case as string. \",\n            \"parameterUsage\": \"body\"\n        }], \n    \"required\": [\n        \"title\"\n    ],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-create-a-new-case>\",\n    \"type\": \"external\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Create New Tool- GetCases",
+          "seq": 5,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/tools",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n    \"name\": \"tutorialGetCases\",\n    \"callMethod\": \"post\",\n    \"description\": \"Returns the cases history as a list of texts, with datetime, title, description, type for each entry. Cases contain knowledge about existing problems in the plant and can help to find solutions to current problems\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-cases>\",\n    \"type\": \"external\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Create New Tool- GetEnergyCost",
+          "seq": 6,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/tools",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n    \"name\": \"tutorialGetEnergyCost\",\n    \"callMethod\": \"post\",\n    \"description\": \"Returns the current energy cost in EUR / MWh\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-energy-cost>\",\n    \"type\": \"external\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Create New Tool- GetEvents",
+          "seq": 4,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/tools",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n    \"name\": \"tutorialGetEvents\",\n    \"callMethod\": \"post\",\n    \"description\": \"Gets the recent events of the plant as a list of texts. Each list entry has a timestamp, severity, title, description. The title refers to the asset that was the source of the event. Events provide information about historical issues or problems with machines in the plant and can help to find solutions to current problems. You must ALWAYS summarize these events and avoid duplicate entries.\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-events\",\n    \"type\": \"external\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Create New Tool- GetPlantStatus",
+          "seq": 3,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/tools",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n    \"name\": \"tutorialGetPlantStatus\",\n    \"callMethod\": \"post\",\n    \"description\": \"Gets the current status of the plant, as input for further analysis. The status comprises the operating state for the critical machines and equipment in the format machine-name: machine-state. e.g. stencilprinter: error, smt-machine: warning\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-the-current-plant-status>\",\n    \"type\": \"external\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Delete Tool By Id - attention -",
+          "seq": 10,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/tools/:id",
+            "method": "DELETE",
+            "headers": [],
+            "params": [
+              {
+                "name": "id",
+                "value": "<add the tool-id with care>",
+                "type": "path",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "json": "",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Get Tool By Id",
+          "seq": 2,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/tools/:id",
+            "method": "GET",
+            "headers": [],
+            "params": [
+              {
+                "name": "id",
+                "value": "<Enter your skill id here - e.g. copy from Copilot Studio>",
+                "type": "path",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "json": "",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Get Tools",
+          "seq": 1,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/tools",
+            "method": "GET",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Update Tool By Id",
+          "seq": 9,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/tools/:id",
+            "method": "PUT",
+            "headers": [],
+            "params": [
+              {
+                "name": "id",
+                "value": "<Enter your skill id here - e.g. copy from Copilot Studio>",
+                "type": "path",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"name\": \"tutorialCreateNewCase\",\n  \"callMethod\": \"post\",\n  \"description\": \"Create a new case based on the provided title and description\",\n  \"parameters\": [\n    {\n      \"name\": \"title\",\n      \"type\": \"string\",\n      \"description\": \"The title of the case as string. \",\n      \"parameterUsage\": \"body\"\n    },\n    {\n      \"name\": \"description\",\n      \"type\": \"string\",\n      \"description\": \"The description of the case as string. \",\n      \"parameterUsage\": \"body\"\n    }\n  ],\n  \"required\": [\n    \"title\"\n  ],\n  \"endpoint\": \"<your-skills-endpoint-in-vfc-to-create-a-new-case-proposal>\",\n  \"type\": \"external\",\n  \"scope\": \"global\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "environments": [],
+  "root": {
+    "request": {
+      "auth": {
+        "mode": "none"
+      },
+      "script": {
+        "req": "let session_var = bru.getCollectionVar(\"session\");\nlet xsrf_token_var = bru.getCollectionVar(\"xsrf_token\");\n\nreq.setHeader('X-XSRF-TOKEN', xsrf_token_var);\nreq.setHeader('Cookie', \"SESSION=\" + session_var + \"; XSRF-TOKEN=\" + xsrf_token_var);\n"
+      },
+      "vars": {
+        "req": [
+          {
+            "name": "assistant_server_url",
+            "value": "https://<yourTenantName>-operationsinsight.eu1.mindsphere.io/api/assistant/v3",
+            "enabled": true,
+            "local": false,
+            "uid": "qyrBPPuPKdsQaF19vXnxy"
+          },
+          {
+            "name": "session",
+            "value": "xxxx",
+            "enabled": true,
+            "local": false,
+            "uid": "qtdQY6qYl2gIv3uhjcka3"
+          },
+          {
+            "name": "xsrf_token",
+            "value": "xxxx",
+            "enabled": true,
+            "local": false,
+            "uid": "S47uyigCUjRinepozT9EV"
+          },
+          {
+            "name": "instructions",
+            "value": "You are a helpful plant assistant.\\nWhenever a user asks, execute these steps in sequence. Always summarize your findings. Begin your answer with 'Here is today's summary for your plant:'\\n\\n*(STEP) Current status*: Get the plant status and summarize it per machine for the user. Provide the output for the user before you proceed to the next step.\\n\\n*(STEP) Recent events and cases*: Get recent events, get recent cases. Then list a summary for the user with the 5 (five) most interesting events and cases. Ignore timestamps and avoid duplicate entries. Never skip this step! Provide the output for the user before you proceed to the next step.\\n\\n*(STEP) Recommendations*. Check if any case data matches to recent events and the machine states. If possible provide a recommendation to solve the current problem. Mention ONLY cases that are related to current machines in ERROR state. If there are no recommendations skip this section completely'.\\n\\n*(STEP) Reference Data*. Only if you have given a recommendation: summarize historical events and cases that were used to create it. If there is no recommedation skip this section completely.\\n\\n*(STEP) Energy use:* Check the energy cost. If it is above 35 €/MWh recommend to reduce the oven pre-heating temperature if the schedule permits.\\n\\nAlways summarize your findings.",
+            "enabled": true,
+            "local": false,
+            "uid": "uBaLT4xdgNYDP0qxjgLYc"
+          }
+        ]
+      }
+    },
+    "docs": "This collection allows to manage the custom agents in Insights Hub. Custom agents (Assistants) with custom skills (tools) can be created.",
+    "meta": {
+      "name": "Production Copilot Tutorial v1.0 2025-01-31"
+    }
+  },
+  "brunoConfig": {
+    "version": "1",
+    "name": "Production Copilot Tutorial v1.0 2025-03",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "size": 0.012270927429199219,
+    "filesCount": 19
+  }
+}
