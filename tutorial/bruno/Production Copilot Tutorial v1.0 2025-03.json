@@ -37,7 +37,7 @@
       "items": [
         {
           "type": "http",
-          "name": "Create Assistant",
+          "name": "Create Assistant -see Scripts section-",
           "seq": 3,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant",
@@ -46,11 +46,14 @@
             "params": [],
             "body": {
               "mode": "json",
-              "json": "{\n  \"name\": \"Tutorial: Shopfloor Snapshot-xxx\",\n  \"description\": \"This agent provides a snapshot of your plant.\",\n  \"instructions\": \"You are a helpful plant assistant.\\nWhenever a user asks, execute these steps in sequence. Always summarize your findings. Begin your answer with 'Here is today's summary for your plant:'\\n\\n*(STEP) Current status*: Get the plant status and summarize it per machine for the user. Provide the output for the user before you proceed to the next step.\\n\\n*(STEP) Recent events and cases*: Get recent events, get recent cases. Then list a summary for the user with the 5 (five) most interesting events and cases. Ignore timestamps and avoid duplicate entries. Never skip this step! Provide the output for the user before you proceed to the next step.\\n\\n*(STEP) Recommendations*. Check if any case data matches to recent events and the machine states. If possible provide a recommendation to solve the current problem. Mention ONLY cases that are related to current machines in ERROR state. If there are no recommendations skip this section completely'.\\n\\n*(STEP) Reference Data*. Only if you have given a recommendation: summarize historical events and cases that were used to create it. If there is no recommedation skip this section completely.\\n\\n*(STEP) Energy use:* Check the energy cost. If it is above 35 Euro/MWh recommend to reduce the oven pre-heating temperature if the schedule permits.\\n\\nAlways summarize your findings.\",\n  \"toolIds\": [\n    \"your-skill-id-1\",\n    \"your-skill-id-2\",\n    \"your-skill-id-3\",\n    \"your-skill-id-4\",\n    \"your-skill-id-5\",\n    \"your-skill-id-6\"\n  ]\n}",
+              "json": "{\n  \"name\": \"Tutorial: Shopfloor Snapshot-xxx\",\n  \"description\": \"This agent provides a snapshot of your plant.\",\n  \"instructions\": {{instructions}},\n  \"toolIds\": [\n    \"your-skill-id-1\",\n    \"your-skill-id-2\",\n    \"your-skill-id-3\",\n    \"your-skill-id-4\",\n    \"your-skill-id-5\",\n    \"your-skill-id-6\"\n  ]\n}",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
-            "script": {},
+            "script": {
+              "req": "const instructions =  \n\"You are a helpful plant assistant.\\n\" + \n\"Whenever a user asks, execute these steps in sequence. Always summarize your findings. Begin your answer with 'Here is today's summary for your plant:'\\n\\n\" +\n\" *(STEP) Current status*: Get the plant status and summarize it per machine for the user. Provide the output for the user before you proceed to the next step.\\n\\n\" +\n\" *(STEP) Recent events and cases*: Get recent events, get recent cases. Then list a summary for the user with the 5 (five) most interesting events and cases. Ignore timestamps and avoid duplicate entries. Never skip this step! Provide the output for the user before you proceed to the next step.\\n\\n\" +\n\" *(STEP) Recommendations*. Check if any case data matches to recent events and the machine states. If possible provide a recommendation to solve the current problem. Mention ONLY cases that are related to current machines in ERROR state. If there are no recommendations skip this section completely'.\\n\\n\" +\n\" *(STEP) Reference Data*. Only if you have given a recommendation: summarize historical events and cases that were used to create it. If there is no recommendation skip this section completely.\\n\\n\" +\n\"Always summarize your findings.\"\n\nbru.setVar(\"instructions\", JSON.stringify(instructions));"
+            },
             "vars": {},
             "assertions": [],
             "tests": "",
@@ -167,12 +170,12 @@
             ],
             "body": {
               "mode": "json",
-              "json": "{\n  \"name\": \"Tutorial: Shopfloor Snapshot-xxx\",\n  \"instructions\": {{instructions}},\n  \"owner\": \"admin\",\n  \"toolIds\": [\n    \"your-skill-id-1\",\n    \"your-skill-id-2\",\n    \"your-skill-id-3\",\n    \"your-skill-id-4\",\n    \"your-skill-id-5\",\n    \"your-skill-id-6\"\n  ]\n}",
+              "json": "{\n  \"name\": \"Tutorial: Shopfloor Snapshot-xxx\",\n  \"instructions\": {{instructions}},\n  \"toolIds\": [\n    \"your-skill-id-1\",\n    \"your-skill-id-2\",\n    \"your-skill-id-3\",\n    \"your-skill-id-4\",\n    \"your-skill-id-5\",\n    \"your-skill-id-6\"\n  ]\n}",
               "formUrlEncoded": [],
               "multipartForm": []
             },
             "script": {
-              "req": "const instructions =  \r\n\"You are an assistant tasked with helping the user to understand the situation on the shopfloor, and help where possible.\\n\\n\" +\r\n\"**General instructions:**\\n\" +\r\n\"- ALWAYS summarize events and cases, avoid duplicate entries\" +\r\n\"- When you use the function 'getEventData' summarize based on the description. Ignore the timestamps. The user should not see the same description several times. Only if the user asks for a list of events, provide all data without summarizing.\\n\" +\r\n\"- For each question, ALWAYS trigger new tool calls, do NOT use cached data.\" +\r\n\"**Specific instructions:**\\n\" +\r\n\"- When the user asks questions about the status of the plant or current problems, or recommendations follow these instructions:\\n\" +\r\n\"  1. Get the current status of the plant, get event data, get case data\\n\" +\r\n\"  2. Provide a response to the user in the following format:\\n\" +\r\n\"    - *Current status*. Here, list the plant status.\\n\" +\r\n\"    - *Recent events*. Here, list a summary of recent events.\\n\" +\r\n\"    - *Recommendations*. Here, check if any case data matches to recent events the the machine states. Then, if possible, provide a recommendation to solve the current problem. Make sure to mention ONLY cases that are related to current machines in ERROR state. If you are not sure, say 'There are no recommendations for the current situation'.\\n\" +\r\n\"    - *Reference Data*. If there was a recommendation summarize historical events and cases that were used to create it. If there is no recommedation, or if there are no related cases or events leave away this section.\" \r\n\r\nbru.setVar(\"instructions\", JSON.stringify(instructions));"
+              "req": "const instructions =  \n\"You are a helpful plant assistant.\\n\" + \n\"Whenever a user asks, execute these steps in sequence. Always summarize your findings. Begin your answer with 'Here is today's summary for your plant:'\\n\\n\" +\n\" *(STEP) Current status*: Get the plant status and summarize it per machine for the user. Provide the output for the user before you proceed to the next step.\\n\\n\" +\n\" *(STEP) Recent events and cases*: Get recent events, get recent cases. Then list a summary for the user with the 5 (five) most interesting events and cases. Ignore timestamps and avoid duplicate entries. Never skip this step! Provide the output for the user before you proceed to the next step.\\n\\n\" +\n\" *(STEP) Recommendations*. Check if any case data matches to recent events and the machine states. If possible provide a recommendation to solve the current problem. Mention ONLY cases that are related to current machines in ERROR state. If there are no recommendations skip this section completely'.\\n\\n\" +\n\" *(STEP) Reference Data*. Only if you have given a recommendation: summarize historical events and cases that were used to create it. If there is no recommendation skip this section completely.\\n\\n\" +\n\"Always summarize your findings.\"\n\nbru.setVar(\"instructions\", JSON.stringify(instructions));"
             },
             "vars": {},
             "assertions": [],
@@ -484,28 +487,21 @@
             "value": "https://<yourTenantName>-operationsinsight.eu1.mindsphere.io/api/assistant/v3",
             "enabled": true,
             "local": false,
-            "uid": "6TQLgwE1BRVWea7fH8BYM"
+            "uid": "kzYc7BqPAk77o0h6i9GcK"
           },
           {
             "name": "session",
             "value": "xxxx",
             "enabled": true,
             "local": false,
-            "uid": "rBvMW4ekBypZh1XmoqNtM"
+            "uid": "F5qsUUMLc0FVDGzlRuV0R"
           },
           {
             "name": "xsrf_token",
             "value": "xxxx",
             "enabled": true,
             "local": false,
-            "uid": "lQGEcJ5vzcIxS1QuBN8Kg"
-          },
-          {
-            "name": "instructions",
-            "value": "You are a helpful plant assistant.\\nWhenever a user asks, execute these steps in sequence. Always summarize your findings. Begin your answer with 'Here is today's summary for your plant:'\\n\\n*(STEP) Current status*: Get the plant status and summarize it per machine for the user. Provide the output for the user before you proceed to the next step.\\n\\n*(STEP) Recent events and cases*: Get recent events, get recent cases. Then list a summary for the user with the 5 (five) most interesting events and cases. Ignore timestamps and avoid duplicate entries. Never skip this step! Provide the output for the user before you proceed to the next step.\\n\\n*(STEP) Recommendations*. Check if any case data matches to recent events and the machine states. If possible provide a recommendation to solve the current problem. Mention ONLY cases that are related to current machines in ERROR state. If there are no recommendations skip this section completely'.\\n\\n*(STEP) Reference Data*. Only if you have given a recommendation: summarize historical events and cases that were used to create it. If there is no recommedation skip this section completely.\\n\\n*(STEP) Energy use:* Check the energy cost. If it is above 35 €/MWh recommend to reduce the oven pre-heating temperature if the schedule permits.\\n\\nAlways summarize your findings.",
-            "enabled": true,
-            "local": false,
-            "uid": "xCxvyOpbR1Bys5mvAG1tC"
+            "uid": "IZPJX0zzqbkYfxqTys5To"
           }
         ]
       }
