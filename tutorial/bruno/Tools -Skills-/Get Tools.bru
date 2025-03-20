@@ -1,0 +1,11 @@
+meta {
+  name: Get Tools
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{assistant_server_url}}/openai/assistant/tools
+  body: json
+  auth: none
+}

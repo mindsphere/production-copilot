@@ -1,0 +1,15 @@
+meta {
+  name: Delete Tool By Id - attention -
+  type: http
+  seq: 10
+}
+
+delete {
+  url: {{assistant_server_url}}/openai/assistant/tools/:id
+  body: json
+  auth: none
+}
+
+params:path {
+  id: <add the tool-id with care>
+}

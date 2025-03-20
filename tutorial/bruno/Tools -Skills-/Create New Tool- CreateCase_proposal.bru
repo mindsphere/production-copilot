@@ -1,0 +1,23 @@
+meta {
+  name: Create New Tool- CreateCase_proposal
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{assistant_server_url}}/openai/assistant/tools
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "name": "createCaseProposal",
+      "callMethod": "post",
+      "description": "Helps the user to create a new case with information about the current problem, so that the maintenance team can act on the issues. Suggests a title and short summary description based on the current situation. Then asks the user for confirmation. After user confirmation, use the createNewCase function to save the data in the system.",
+      "parameters":[], 
+      "required": [],
+      "endpoint": "<your-skills-endpoint-in-vfc-to-create-a-new-case-proposal>",
+      "type": "external"
+  }
+}

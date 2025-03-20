@@ -1,0 +1,23 @@
+meta {
+  name: Create New Tool- GetEnergyCost
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{assistant_server_url}}/openai/assistant/tools
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "name": "tutorialGetEnergyCost",
+      "callMethod": "post",
+      "description": "Returns the current energy cost in EUR / MWh",
+      "parameters": [],
+      "required": [],
+      "endpoint": "<your-skills-endpoint-in-vfc-to-get-energy-cost>",
+      "type": "external"
+  }
+}
