@@ -1,0 +1,43 @@
+meta {
+  name: Update Tool By Id
+  type: http
+  seq: 9
+}
+
+put {
+  url: {{assistant_server_url}}/openai/assistant/tools/:id
+  body: json
+  auth: none
+}
+
+params:path {
+  id: <Enter your skill id here - e.g. copy from Copilot Studio>
+}
+
+body:json {
+  {
+    "name": "tutorialCreateNewCase",
+    "callMethod": "post",
+    "description": "Create a new case based on the provided title and description",
+    "parameters": [
+      {
+        "name": "title",
+        "type": "string",
+        "description": "The title of the case as string. ",
+        "parameterUsage": "body"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "description": "The description of the case as string. ",
+        "parameterUsage": "body"
+      }
+    ],
+    "required": [
+      "title"
+    ],
+    "endpoint": "<your-skills-endpoint-in-vfc-to-create-a-new-case-proposal>",
+    "type": "external",
+    "scope": "global"
+  }
+}

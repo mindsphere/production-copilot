@@ -1,0 +1,26 @@
+meta {
+  name: Production Copilot Tutorial v1.0 2025-01-31
+}
+
+auth {
+  mode: none
+}
+
+vars:pre-request {
+  assistant_server_url: https://<yourTenantName>-operationsinsight.eu1.mindsphere.io/api/assistant/v3
+  session: xxxx
+  xsrf_token: xxxx
+}
+
+script:pre-request {
+  let session_var = bru.getCollectionVar("session");
+  let xsrf_token_var = bru.getCollectionVar("xsrf_token");
+  
+  req.setHeader('X-XSRF-TOKEN', xsrf_token_var);
+  req.setHeader('Cookie', "SESSION=" + session_var + "; XSRF-TOKEN=" + xsrf_token_var);
+  
+}
+
+docs {
+  This collection allows to manage the custom agents in Insights Hub. Custom agents (Assistants) with custom skills (tools) can be created.
+}

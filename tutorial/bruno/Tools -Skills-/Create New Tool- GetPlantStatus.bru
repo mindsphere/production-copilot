@@ -1,0 +1,23 @@
+meta {
+  name: Create New Tool- GetPlantStatus
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{assistant_server_url}}/openai/assistant/tools
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "name": "tutorialGetPlantStatus",
+      "callMethod": "post",
+      "description": "Gets the current status of the plant, as input for further analysis. The status comprises the operating state for the critical machines and equipment in the format machine-name: machine-state. e.g. stencilprinter: error, smt-machine: warning",
+      "parameters": [],
+      "required": [],
+      "endpoint": "<your-skills-endpoint-in-vfc-to-get-the-current-plant-status>",
+      "type": "external"
+  }
+}

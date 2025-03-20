@@ -1,0 +1,37 @@
+meta {
+  name: Create New Tool- CreateNewCase
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{assistant_server_url}}/openai/assistant/tools
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "name": "tutorialCreateNewCase",
+      "callMethod": "post",
+      "description": "Create a new case based on the provided title and description",
+      "parameters":[
+          {
+              "name": "title",
+              "type": "string",
+              "description": "The title of the case as string. ",
+              "parameterUsage": "body"
+          }, 
+          {
+              "name": "description",
+              "type": "string",
+              "description": "The description of the case as string. ",
+              "parameterUsage": "body"
+          }], 
+      "required": [
+          "title"
+      ],
+      "endpoint": "<your-skills-endpoint-in-vfc-to-create-a-new-case>",
+      "type": "external"
+  }
+}

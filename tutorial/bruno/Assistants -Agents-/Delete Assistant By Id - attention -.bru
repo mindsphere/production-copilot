@@ -1,0 +1,15 @@
+meta {
+  name: Delete Assistant By Id - attention -
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{assistant_server_url}}/openai/assistant/:id
+  body: json
+  auth: none
+}
+
+params:path {
+  id: <add the assistant-id with care>
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Create New Tool- GetCases
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{assistant_server_url}}/openai/assistant/tools
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "name": "tutorialGetCases",
+      "callMethod": "post",
+      "description": "Returns the cases history as a list of texts, with datetime, title, description, type for each entry. Cases contain knowledge about existing problems in the plant and can help to find solutions to current problems",
+      "parameters": [],
+      "required": [],
+      "endpoint": "<your-skills-endpoint-in-vfc-to-get-cases>",
+      "type": "external"
+  }
+}

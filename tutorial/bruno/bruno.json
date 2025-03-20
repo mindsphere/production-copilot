@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Production Copilot Tutorial v1.0 2025-03",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,0 +1,11 @@
+meta {
+  name: Get api version
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{assistant_server_url}}/version
+  body: none
+  auth: inherit
+}

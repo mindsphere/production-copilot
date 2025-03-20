@@ -1,0 +1,40 @@
+meta {
+  name: Create Assistant -see Scripts section-
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{assistant_server_url}}/openai/assistant
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Tutorial: Shopfloor Snapshot-xxx",
+    "description": "This agent provides a snapshot of your plant.",
+    "instructions": {{instructions}},
+    "toolIds": [
+      "your-skill-id-1",
+      "your-skill-id-2",
+      "your-skill-id-3",
+      "your-skill-id-4",
+      "your-skill-id-5",
+      "your-skill-id-6"
+    ]
+  }
+}
+
+script:pre-request {
+  const instructions =  
+  "You are a helpful plant assistant.\n" + 
+  "Whenever a user asks, execute these steps in sequence. Always summarize your findings. Begin your answer with 'Here is today's summary for your plant:'\n\n" +
+  " *(STEP) Current status*: Get the plant status and summarize it per machine for the user. Provide the output for the user before you proceed to the next step.\n\n" +
+  " *(STEP) Recent events and cases*: Get recent events, get recent cases. Then list a summary for the user with the 5 (five) most interesting events and cases. Ignore timestamps and avoid duplicate entries. Never skip this step! Provide the output for the user before you proceed to the next step.\n\n" +
+  " *(STEP) Recommendations*. Check if any case data matches to recent events and the machine states. If possible provide a recommendation to solve the current problem. Mention ONLY cases that are related to current machines in ERROR state. If there are no recommendations skip this section completely'.\n\n" +
+  " *(STEP) Reference Data*. Only if you have given a recommendation: summarize historical events and cases that were used to create it. If there is no recommendation skip this section completely.\n\n" +
+  "Always summarize your findings."
+  
+  bru.setVar("instructions", JSON.stringify(instructions));
+}
