@@ -233,7 +233,7 @@
             "params": [],
             "body": {
               "mode": "json",
-              "json": "{\n    \"name\": \"tutorialCreateNewCase\",\n    \"callMethod\": \"post\",\n    \"description\": \"Create a new case based on the provided title and description\",\n    \"parameters\":[\n        {\n            \"name\": \"title\",\n            \"type\": \"string\",\n            \"description\": \"The title of the case as string. \",\n            \"parameterUsage\": \"body\"\n        }, \n        {\n            \"name\": \"description\",\n            \"type\": \"string\",\n            \"description\": \"The description of the case as string. \",\n            \"parameterUsage\": \"body\"\n        }], \n    \"required\": [\n        \"title\"\n    ],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-create-a-new-case>\",\n    \"type\": \"external\"\n}",
+              "json": "{\n    \"name\": \"createNewCase\",\n    \"callMethod\": \"post\",\n    \"description\": \"Create a new case based on the provided title and description\",\n    \"parameters\":[\n        {\n            \"name\": \"title\",\n            \"type\": \"string\",\n            \"description\": \"The title of the case as string. \",\n            \"parameterUsage\": \"body\"\n        }, \n        {\n            \"name\": \"description\",\n            \"type\": \"string\",\n            \"description\": \"The description of the case as string. \",\n            \"parameterUsage\": \"body\"\n        }], \n    \"required\": [\n        \"title\"\n    ],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-create-a-new-case>\",\n    \"type\": \"external\"\n}",
               "formUrlEncoded": [],
               "multipartForm": []
             },
@@ -258,7 +258,7 @@
             "params": [],
             "body": {
               "mode": "json",
-              "json": "{\n    \"name\": \"tutorialGetCases\",\n    \"callMethod\": \"post\",\n    \"description\": \"Returns the cases history as a list of texts, with datetime, title, description, type for each entry. Cases contain knowledge about existing problems in the plant and can help to find solutions to current problems\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-cases>\",\n    \"type\": \"external\"\n}",
+              "json": "{\n    \"name\": \"getCases\",\n    \"callMethod\": \"post\",\n    \"description\": \"Returns the cases history as a list of texts, with datetime, title, description, type for each entry. Cases contain knowledge about existing problems in the plant and can help to find solutions to current problems\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-cases>\",\n    \"type\": \"external\"\n}",
               "formUrlEncoded": [],
               "multipartForm": []
             },
@@ -283,7 +283,7 @@
             "params": [],
             "body": {
               "mode": "json",
-              "json": "{\n    \"name\": \"tutorialGetEnergyCost\",\n    \"callMethod\": \"post\",\n    \"description\": \"Returns the current energy cost in EUR / MWh\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-energy-cost>\",\n    \"type\": \"external\"\n}",
+              "json": "{\n    \"name\": \"getEnergyCost\",\n    \"callMethod\": \"post\",\n    \"description\": \"Returns the current energy cost in EUR / MWh\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-energy-cost>\",\n    \"type\": \"external\"\n}",
               "formUrlEncoded": [],
               "multipartForm": []
             },
@@ -308,7 +308,7 @@
             "params": [],
             "body": {
               "mode": "json",
-              "json": "{\n    \"name\": \"tutorialGetEvents\",\n    \"callMethod\": \"post\",\n    \"description\": \"Gets the recent events of the plant as a list of texts. Each list entry has a timestamp, severity, title, description. The title refers to the asset that was the source of the event. Events provide information about historical issues or problems with machines in the plant and can help to find solutions to current problems. You must ALWAYS summarize these events and avoid duplicate entries.\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-events\",\n    \"type\": \"external\"\n}",
+              "json": "{\n    \"name\": \"getEvents\",\n    \"callMethod\": \"post\",\n    \"description\": \"Gets the recent events of the plant as a list of texts. Each list entry has a timestamp, severity, title, description. The title refers to the asset that was the source of the event. Events provide information about historical issues or problems with machines in the plant and can help to find solutions to current problems. You must ALWAYS summarize these events and avoid duplicate entries.\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-events\",\n    \"type\": \"external\"\n}",
               "formUrlEncoded": [],
               "multipartForm": []
             },
@@ -333,7 +333,7 @@
             "params": [],
             "body": {
               "mode": "json",
-              "json": "{\n    \"name\": \"tutorialGetPlantStatus\",\n    \"callMethod\": \"post\",\n    \"description\": \"Gets the current status of the plant, as input for further analysis. The status comprises the operating state for the critical machines and equipment in the format machine-name: machine-state. e.g. stencilprinter: error, smt-machine: warning\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-the-current-plant-status>\",\n    \"type\": \"external\"\n}",
+              "json": "{\n    \"name\": \"getPlantStatus\",\n    \"callMethod\": \"post\",\n    \"description\": \"Gets the current status of the plant, as input for further analysis. The status comprises the operating state for the critical machines and equipment in the format machine-name: machine-state. e.g. stencilprinter: error, smt-machine: warning\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-the-current-plant-status>\",\n    \"type\": \"external\"\n}",
               "formUrlEncoded": [],
               "multipartForm": []
             },
@@ -454,7 +454,7 @@
             ],
             "body": {
               "mode": "json",
-              "json": "{\n  \"name\": \"tutorialCreateNewCase\",\n  \"callMethod\": \"post\",\n  \"description\": \"Create a new case based on the provided title and description\",\n  \"parameters\": [\n    {\n      \"name\": \"title\",\n      \"type\": \"string\",\n      \"description\": \"The title of the case as string. \",\n      \"parameterUsage\": \"body\"\n    },\n    {\n      \"name\": \"description\",\n      \"type\": \"string\",\n      \"description\": \"The description of the case as string. \",\n      \"parameterUsage\": \"body\"\n    }\n  ],\n  \"required\": [\n    \"title\"\n  ],\n  \"endpoint\": \"<your-skills-endpoint-in-vfc-to-create-a-new-case-proposal>\",\n  \"type\": \"external\",\n  \"scope\": \"global\"\n}",
+              "json": "{\n  \"name\": \"createNewCase\",\n  \"callMethod\": \"post\",\n  \"description\": \"Create a new case based on the provided title and description\",\n  \"parameters\": [\n    {\n      \"name\": \"title\",\n      \"type\": \"string\",\n      \"description\": \"The title of the case as string. \",\n      \"parameterUsage\": \"body\"\n    },\n    {\n      \"name\": \"description\",\n      \"type\": \"string\",\n      \"description\": \"The description of the case as string. \",\n      \"parameterUsage\": \"body\"\n    }\n  ],\n  \"required\": [\n    \"title\"\n  ],\n  \"endpoint\": \"<your-skills-endpoint-in-vfc-to-create-a-new-case-proposal>\",\n  \"type\": \"external\",\n  \"scope\": \"global\"\n}",
               "formUrlEncoded": [],
               "multipartForm": []
             },
