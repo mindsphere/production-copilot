@@ -1,7 +1,7 @@
 meta {
   name: Create Assistant -see Scripts section-
   type: http
-  seq: 3
+  seq: 4
 }
 
 post {
@@ -15,6 +15,7 @@ body:json {
     "name": "Tutorial: Shopfloor Snapshot-xxx",
     "description": "This agent provides a snapshot of your plant.",
     "instructions": {{instructions}},
+    "isEnabled": true,
     "toolIds": [
       "your-skill-id-1",
       "your-skill-id-2",

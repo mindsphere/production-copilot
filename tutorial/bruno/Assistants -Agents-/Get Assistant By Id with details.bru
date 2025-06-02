@@ -1,0 +1,15 @@
+meta {
+  name: Get Assistant By Id with details
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{assistant_server_url}}/openai/assistant/:id/details
+  body: json
+  auth: none
+}
+
+params:path {
+  id: <Enter your agent id here - e.g. copy from Copilot Studio>
+}
