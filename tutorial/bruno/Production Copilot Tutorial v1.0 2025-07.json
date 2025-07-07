@@ -1,10 +1,11 @@
 {
-  "name": "Production Copilot Tutorial v1.0 2025-03",
+  "name": "Production Copilot Tutorial v1.1 2025-07",
   "version": "1",
   "items": [
     {
       "type": "http",
       "name": "Get api version",
+      "filename": "Get api version.bru",
       "seq": 2,
       "request": {
         "url": "{{assistant_server_url}}/version",
@@ -14,7 +15,8 @@
         "body": {
           "mode": "none",
           "formUrlEncoded": [],
-          "multipartForm": []
+          "multipartForm": [],
+          "file": []
         },
         "script": {},
         "vars": {},
@@ -28,7 +30,8 @@
     },
     {
       "type": "folder",
-      "name": "Assistants -Agents-",
+      "name": "Assistants (Agents)",
+      "filename": "Assistants -Agents-",
       "root": {
         "meta": {
           "name": "Assistants (Agents)"
@@ -38,7 +41,8 @@
         {
           "type": "http",
           "name": "Create Assistant -see Scripts section-",
-          "seq": 3,
+          "filename": "Create Assistant -see Scripts section-.bru",
+          "seq": 4,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant",
             "method": "POST",
@@ -46,7 +50,7 @@
             "params": [],
             "body": {
               "mode": "json",
-              "json": "{\n  \"name\": \"Tutorial: Shopfloor Snapshot-xxx\",\n  \"description\": \"This agent provides a snapshot of your plant.\",\n  \"instructions\": {{instructions}},\n  \"toolIds\": [\n    \"your-skill-id-1\",\n    \"your-skill-id-2\",\n    \"your-skill-id-3\",\n    \"your-skill-id-4\",\n    \"your-skill-id-5\",\n    \"your-skill-id-6\"\n  ]\n}",
+              "json": "{\n  \"name\": \"Tutorial: Shopfloor Snapshot-xxx\",\n  \"description\": \"This agent provides a snapshot of your plant.\",\n  \"instructions\": {{instructions}},\n  \"isEnabled\": true,\n  \"toolIds\": [\n    \"your-skill-id-1\",\n    \"your-skill-id-2\",\n    \"your-skill-id-3\",\n    \"your-skill-id-4\",\n    \"your-skill-id-5\",\n    \"your-skill-id-6\"\n  ]\n}",
               "formUrlEncoded": [],
               "multipartForm": [],
               "file": []
@@ -66,6 +70,7 @@
         {
           "type": "http",
           "name": "Delete Assistant By Id - attention -",
+          "filename": "Delete Assistant By Id - attention -.bru",
           "seq": 5,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/:id",
@@ -83,7 +88,42 @@
               "mode": "json",
               "json": "",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Get Assistant By Id with details",
+          "filename": "Get Assistant By Id with details.bru",
+          "seq": 3,
+          "request": {
+            "url": "{{assistant_server_url}}/openai/assistant/:id/details",
+            "method": "GET",
+            "headers": [],
+            "params": [
+              {
+                "name": "id",
+                "value": "<Enter your agent id here - e.g. copy from Copilot Studio>",
+                "type": "path",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "json",
+              "json": "",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -98,6 +138,7 @@
         {
           "type": "http",
           "name": "Get Assistant By Id",
+          "filename": "Get Assistant By Id.bru",
           "seq": 2,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/:id",
@@ -115,7 +156,8 @@
               "mode": "json",
               "json": "",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -130,6 +172,7 @@
         {
           "type": "http",
           "name": "Get Assistants",
+          "filename": "Get Assistants.bru",
           "seq": 1,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant",
@@ -140,7 +183,8 @@
               "mode": "json",
               "json": "",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -155,6 +199,7 @@
         {
           "type": "http",
           "name": "Update Assistant By Id -see Scripts section-",
+          "filename": "Update Assistant By Id -see Scripts section-.bru",
           "seq": 4,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/:id",
@@ -170,9 +215,10 @@
             ],
             "body": {
               "mode": "json",
-              "json": "{\n  \"name\": \"Tutorial: Shopfloor Snapshot-xxx\",\n  \"instructions\": {{instructions}},\n  \"toolIds\": [\n    \"your-skill-id-1\",\n    \"your-skill-id-2\",\n    \"your-skill-id-3\",\n    \"your-skill-id-4\",\n    \"your-skill-id-5\",\n    \"your-skill-id-6\"\n  ]\n}",
+              "json": "{\n  \"name\": \"Tutorial: Shopfloor Snapshot-xxx\",\n  \"description\": \"This agent provides a snapshot of your plant.\",\n  \"isEnabled\": true,\n  \"instructions\": {{instructions}},\n  \"toolIds\": [\n    \"your-skill-id-1\",\n    \"your-skill-id-2\",\n    \"your-skill-id-3\",\n    \"your-skill-id-4\",\n    \"your-skill-id-5\",\n    \"your-skill-id-6\"\n  ]\n}",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {
               "req": "const instructions =  \n\"You are a helpful plant assistant.\\n\" + \n\"Whenever a user asks, execute these steps in sequence. Always summarize your findings. Begin your answer with 'Here is today's summary for your plant:'\\n\\n\" +\n\" *(STEP) Current status*: Get the plant status and summarize it per machine for the user. Provide the output for the user before you proceed to the next step.\\n\\n\" +\n\" *(STEP) Recent events and cases*: Get recent events, get recent cases. Then list a summary for the user with the 5 (five) most interesting events and cases. Ignore timestamps and avoid duplicate entries. Never skip this step! Provide the output for the user before you proceed to the next step.\\n\\n\" +\n\" *(STEP) Recommendations*. Check if any case data matches to recent events and the machine states. If possible provide a recommendation to solve the current problem. Mention ONLY cases that are related to current machines in ERROR state. If there are no recommendations skip this section completely'.\\n\\n\" +\n\" *(STEP) Reference Data*. Only if you have given a recommendation: summarize historical events and cases that were used to create it. If there is no recommendation skip this section completely.\\n\\n\" +\n\"Always summarize your findings.\"\n\nbru.setVar(\"instructions\", JSON.stringify(instructions));"
@@ -188,9 +234,10 @@
         }
       ]
     },
-    {
+        {
       "type": "folder",
-      "name": "Tools -Skills-",
+      "name": "Tools (Skills)",
+      "filename": "Tools -Skills-",
       "root": {
         "meta": {
           "name": "Tools (Skills)"
@@ -200,6 +247,7 @@
         {
           "type": "http",
           "name": "Create New Tool- CreateCase_proposal",
+          "filename": "Create New Tool- CreateCase_proposal.bru",
           "seq": 8,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/tools",
@@ -210,7 +258,8 @@
               "mode": "json",
               "json": "{\n    \"name\": \"createCaseProposal\",\n    \"callMethod\": \"post\",\n    \"description\": \"Helps the user to create a new case with information about the current problem, so that the maintenance team can act on the issues. Suggests a title and short summary description based on the current situation. Then asks the user for confirmation. After user confirmation, use the createNewCase function to save the data in the system.\",\n    \"parameters\":[], \n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-create-a-new-case-proposal>\",\n    \"type\": \"external\"\n}",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -225,6 +274,7 @@
         {
           "type": "http",
           "name": "Create New Tool- CreateNewCase",
+          "filename": "Create New Tool- CreateNewCase.bru",
           "seq": 7,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/tools",
@@ -235,7 +285,8 @@
               "mode": "json",
               "json": "{\n    \"name\": \"createNewCase\",\n    \"callMethod\": \"post\",\n    \"description\": \"Create a new case based on the provided title and description\",\n    \"parameters\":[\n        {\n            \"name\": \"title\",\n            \"type\": \"string\",\n            \"description\": \"The title of the case as string. \",\n            \"parameterUsage\": \"body\"\n        }, \n        {\n            \"name\": \"description\",\n            \"type\": \"string\",\n            \"description\": \"The description of the case as string. \",\n            \"parameterUsage\": \"body\"\n        }], \n    \"required\": [\n        \"title\"\n    ],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-create-a-new-case>\",\n    \"type\": \"external\"\n}",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -250,6 +301,7 @@
         {
           "type": "http",
           "name": "Create New Tool- GetCases",
+          "filename": "Create New Tool- GetCases.bru",
           "seq": 5,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/tools",
@@ -260,7 +312,8 @@
               "mode": "json",
               "json": "{\n    \"name\": \"getCases\",\n    \"callMethod\": \"post\",\n    \"description\": \"Returns the cases history as a list of texts, with datetime, title, description, type for each entry. Cases contain knowledge about existing problems in the plant and can help to find solutions to current problems\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-cases>\",\n    \"type\": \"external\"\n}",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -275,6 +328,7 @@
         {
           "type": "http",
           "name": "Create New Tool- GetEnergyCost",
+          "filename": "Create New Tool- GetEnergyCost.bru",
           "seq": 6,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/tools",
@@ -285,7 +339,8 @@
               "mode": "json",
               "json": "{\n    \"name\": \"getEnergyCost\",\n    \"callMethod\": \"post\",\n    \"description\": \"Returns the current energy cost in EUR / MWh\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-energy-cost>\",\n    \"type\": \"external\"\n}",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -300,6 +355,7 @@
         {
           "type": "http",
           "name": "Create New Tool- GetEvents",
+          "filename": "Create New Tool- GetEvents.bru",
           "seq": 4,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/tools",
@@ -310,7 +366,8 @@
               "mode": "json",
               "json": "{\n    \"name\": \"getEvents\",\n    \"callMethod\": \"post\",\n    \"description\": \"Gets the recent events of the plant as a list of texts. Each list entry has a timestamp, severity, title, description. The title refers to the asset that was the source of the event. Events provide information about historical issues or problems with machines in the plant and can help to find solutions to current problems. You must ALWAYS summarize these events and avoid duplicate entries.\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-events\",\n    \"type\": \"external\"\n}",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -325,6 +382,7 @@
         {
           "type": "http",
           "name": "Create New Tool- GetPlantStatus",
+          "filename": "Create New Tool- GetPlantStatus.bru",
           "seq": 3,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/tools",
@@ -335,7 +393,8 @@
               "mode": "json",
               "json": "{\n    \"name\": \"getPlantStatus\",\n    \"callMethod\": \"post\",\n    \"description\": \"Gets the current status of the plant, as input for further analysis. The status comprises the operating state for the critical machines and equipment in the format machine-name: machine-state. e.g. stencilprinter: error, smt-machine: warning\",\n    \"parameters\": [],\n    \"required\": [],\n    \"endpoint\": \"<your-skills-endpoint-in-vfc-to-get-the-current-plant-status>\",\n    \"type\": \"external\"\n}",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -350,6 +409,7 @@
         {
           "type": "http",
           "name": "Delete Tool By Id - attention -",
+          "filename": "Delete Tool By Id - attention -.bru",
           "seq": 10,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/tools/:id",
@@ -367,7 +427,8 @@
               "mode": "json",
               "json": "",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -382,6 +443,7 @@
         {
           "type": "http",
           "name": "Get Tool By Id",
+          "filename": "Get Tool By Id.bru",
           "seq": 2,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/tools/:id",
@@ -399,7 +461,8 @@
               "mode": "json",
               "json": "",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -414,6 +477,7 @@
         {
           "type": "http",
           "name": "Get Tools",
+          "filename": "Get Tools.bru",
           "seq": 1,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/tools",
@@ -424,7 +488,8 @@
               "mode": "json",
               "json": "",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -439,6 +504,7 @@
         {
           "type": "http",
           "name": "Update Tool By Id",
+          "filename": "Update Tool By Id.bru",
           "seq": 9,
           "request": {
             "url": "{{assistant_server_url}}/openai/assistant/tools/:id",
@@ -456,7 +522,8 @@
               "mode": "json",
               "json": "{\n  \"name\": \"createNewCase\",\n  \"callMethod\": \"post\",\n  \"description\": \"Create a new case based on the provided title and description\",\n  \"parameters\": [\n    {\n      \"name\": \"title\",\n      \"type\": \"string\",\n      \"description\": \"The title of the case as string. \",\n      \"parameterUsage\": \"body\"\n    },\n    {\n      \"name\": \"description\",\n      \"type\": \"string\",\n      \"description\": \"The description of the case as string. \",\n      \"parameterUsage\": \"body\"\n    }\n  ],\n  \"required\": [\n    \"title\"\n  ],\n  \"endpoint\": \"<your-skills-endpoint-in-vfc-to-create-a-new-case-proposal>\",\n  \"type\": \"external\",\n  \"scope\": \"global\"\n}",
               "formUrlEncoded": [],
-              "multipartForm": []
+              "multipartForm": [],
+              "file": []
             },
             "script": {},
             "vars": {},
@@ -487,37 +554,39 @@
             "value": "https://<yourTenantName>-operationsinsight.eu1.mindsphere.io/api/assistant/v3",
             "enabled": true,
             "local": false,
-            "uid": "kzYc7BqPAk77o0h6i9GcK"
+            "uid": "HIO4f1fXKftlIdCAT3red"
           },
           {
             "name": "session",
             "value": "xxxx",
             "enabled": true,
             "local": false,
-            "uid": "F5qsUUMLc0FVDGzlRuV0R"
+            "uid": "ZVQ03DVpWQKjA1BlX5z2n"
           },
           {
             "name": "xsrf_token",
             "value": "xxxx",
             "enabled": true,
             "local": false,
-            "uid": "IZPJX0zzqbkYfxqTys5To"
+            "uid": "ZzofytBfzu08iA0cQ7iVZ"
           }
         ]
       }
     },
     "docs": "This collection allows to manage the custom agents in Insights Hub. Custom agents (Assistants) with custom skills (tools) can be created.",
     "meta": {
-      "name": "Production Copilot Tutorial v1.0 2025-01-31"
+      "name": "Production Copilot Tutorial v1.1 2025-07-07"
     }
   },
   "brunoConfig": {
     "version": "1",
-    "name": "Production Copilot Tutorial v1.0 2025-03",
+    "name": "Production Copilot Tutorial v1.1 2025-07",
     "type": "collection",
     "ignore": [
       "node_modules",
       ".git"
-    ]
+    ],
+    "size": 0.010851860046386719,
+    "filesCount": 20
   }
 }
